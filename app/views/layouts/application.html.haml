@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+%head
+  %title #{app_name}
+  =stylesheet_link_tag :all
+  =javascript_include_tag :defaults
+  =csrf_meta_tag
+  <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+<body>
+
+%div#top
+  - if !user_signed_in?
+    %div.getListed 
+      <a href=/signup>
+      %div.button Get listed today
+      %div.message 
+        Create a listing.<br>Add a portfolio.<br>Start getting work.<br>
+      </a>
+        
+  %div#menu
+    =link_to "All cities", "/cities"
+    |
+    =link_to "About #{app_name}", "/about"
+    |
+    - 
+    - if cookies[:fav_id] && FavoriteController::favorites(cookies[:fav_id])
+      - fav_count = "("+FavoriteController::favorites(cookies[:fav_id]).count.to_s+")"
+      - if fav_count == "(0)"
+        - fav_count = ""
+    = link_to "My favorites", "/favorites"
+    %span.fav_count
+      = fav_count
+    |
+    - if Rails.env!='test'
+      - if user_signed_in?
+        = link_to "My listing/account", "/account"
+        |
+        = link_to "Sign out", destroy_user_session_path
+      - else 
+        = link_to "Sign up", "/signup"
+        or
+        = link_to "sign in", new_user_session_path
+    
+  %div#logo 
+    <a href=/><img src=/images/logo.png height=40px>#{app_name}</a>
+  %div#slogan
+    - if !@location
+      Find the right #{prof} for your next project.
+    - else
+      #{profs.capitalize} in #{@location.name}
+
+%div#wrap
+  %div#content
+    = yield
+  = render "page/footer"
+
+</body>
+</html>
+
+:javascript
+  $(function() {
+    $(".getListed").hover( function() {
+       $(this).stop().animate( {height: '76px'}, 100 );
+    },
+    function() {
+       $(this).stop().animate( {height: '16px'}, 200 );
+    });
+  });

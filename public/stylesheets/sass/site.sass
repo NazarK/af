@@ -1,0 +1,483 @@
+a
+  outline: none
+
+*
+  margin: 0
+  border: 0
+body
+  color: #000
+  background-color: #f5f5f5
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Helvetica, Arial, sans-serif
+
+textarea 
+  resize: none !important
+
+#logo, #logo a
+  padding:
+    top: 20px
+    left: 5px
+  letter-spacing: -1.5px
+  vertical-align: top
+  float:left
+  color: #000
+  font:
+    family: Arial
+    weight: bold
+    size: 40px
+  text-decoration: none
+
+#slogan
+  font:
+    size: 28px
+    family: Georgia, Times, serif
+  color: #555
+  margin-left: 40px
+
+#wrap
+  width: 980px
+  margin: 0 auto
+  
+#top
+  padding-bottom: 10px
+  border-bottom: 3px solid #ddd
+  
+#top #menu 
+  margin-top: 10px
+  float: right
+  color: #999
+  padding-right: 20px
+  font:
+    family: Verdana, Helvetica, Arial
+    size: 13px
+  a  
+    color: #999
+    
+#top #menu a:hover
+  color: #0bf
+
+#content
+  overflow: auto
+
+#footer, #footer a
+  font:
+    size: 12px
+    family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Helvetica, Arial
+  color: #999
+  margin-bottom: 40px
+  line-height: 1.4em
+  margin-top: 40px
+  
+#whiteBack
+  background: #fff
+  margin-top: 20px
+  padding: 40px
+  border-radius: 5px
+  
+  
+.topCity, .topCity a, .topCity a:visited
+  font-size: 21px
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Helvetica, Arial, sans-serif
+  color: #09f
+  
+h2
+  font-family: Helvetica, sans-serif
+  
+  
+.city, .city a, .city a:visited
+  font-size: 14px
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Helvetica, Arial, sans-serif
+  color: #09f
+  
+.country
+  text-transform: uppercase
+  font-family: Helvetica, sans-serif
+  border-top: 1px dotted #ddd
+  margin-top: 20px
+  padding-top: 20px
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Helvetica, Arial, sans-serif
+  
+.user_card, .user_paid_card
+  border: 2px solid #ddd
+  padding: 5px
+  background: #fff
+  width: 200px
+  height: 200px
+  float: left
+  margin: 5px
+
+.user_paid_card
+  width: 425px
+  height: 424px
+
+.listHeader
+  font-size: 15px
+  color: #222
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Helvetica, Arial, sans-serif
+  font-weight: bold
+  text-align: center
+  margin-bottom: 20px
+  margin-top: 10px
+  
+.viewAll a
+  font-size: 12px
+  color: #09f
+  text-transform: none
+
+.listHeader .location, .listHeader .budget
+  font-size: 26px
+  color: #39c
+  font-family: Georgia, Times, Serif
+  border-bottom: 3px solid #3399CC
+  cursor: pointer
+  font-weight: normal
+  margin:
+    left: 10px
+    right: 10px
+
+.location:hover, .budget:hover
+  color: #000
+
+.user_card 
+  padding: 8px
+  border-radius: 6px
+  .city
+    font-size: 10px
+    color: #999
+
+  .budget
+    font-size: 10px
+    color: #333
+
+  .image
+    margin-top: 5px
+    height: 120px
+    overflow: hidden
+
+.user_paid_card 
+  padding: 11px
+  border-radius: 12px
+  .city
+    color: #999
+    font-size: 12px
+
+  .budget
+    color: #333
+    font-size: 12px
+
+  .image
+    margin-top: 5px
+    height: 314px
+    overflow: hidden
+
+.favorites
+  font-size: 12px
+  color: #888
+  font-weight: bold
+  margin-top: 0px
+  padding-left: 24px
+  height: 16px
+  background: url("/images/star.gif") no-repeat scroll 0 0 transparent
+  cursor: pointer
+  &:hover
+    color: #333
+    background: url("/images/star.gif") no-repeat scroll 0 -16px transparent
+
+.budgets_popup, .cities_popup
+  display: none
+  position: absolute
+  margin:
+    top: 50px
+  background: #fff
+  width: 180px
+  border: 1px solid #999
+  z-index: 9000
+  .link 
+    padding: 1px
+    margin-bottom: 5px
+    a
+      margin: 10px
+      color: #39c
+      font-size: 14px
+      text-decoration: none
+      font-family: Georgia, Times, serif
+      line-height: 15px
+      &:hover
+        text-decoration: underline
+
+
+.cities_popup 
+  .bottom
+    border-top: 1px solid #ddd
+     
+a 
+  color: #39c
+  &:hover
+    color: #09f
+   
+.back_home 
+  margin-top: 20px
+  font-size: 12px
+  a
+    font-weight: bold
+
+.fav_share_link
+  float: left
+  background: #ffc
+  border-radius: 8px
+  border: 1px solid #ddd
+  padding: 20px
+  width: 880px
+  margin: 5px
+  margin-top: 30px
+
+.smallWhiteBack
+  width: 400px
+  margin-left: auto
+  margin-right: auto
+  background: #fff
+  padding: 20px
+  border-radius: 10px
+  margin-top: 20px
+  border: 3px solid #ddd
+  input
+    border: 1px solid #999
+  .bigfont
+    font-size: 16px
+    font-weight: bold
+    padding: 3px
+  line-height: 30px
+  h2
+    font-size: 24px
+    display: block
+    font-weight: bold
+    line-height: 40px
+#user_submit, .form_submit
+  padding: 5px 20px
+  font-size: 14px
+  border-radius: 2px
+  background: #ddd
+  margin-top: 20px
+
+input, textarea, select
+  border: 1px solid #999
+
+.account
+  line-height: 40px
+  a
+    font-size: 1.5em
+    font-weight: bold
+    font-family: Helvetica, sans-serif
+    color: #39c
+    &visited
+      color: #39c
+
+
+.slideshownav 
+  border-top: 1px solid #ddd
+  padding-top: 8px
+  height: 20px
+  margin: 8px 0
+  .prev, .next
+    cursor: pointer
+    float: left
+    height: 22px
+    width: 22px
+    background: url(/images/icon_leftarrow.gif) no-repeat
+    &:hover
+      background: url(/images/icon_leftarrow.gif) no-repeat scroll 0 -22px
+  .next
+    float: right
+    background: url(/images/icon_rightarrow.gif) no-repeat
+    &:hover
+      background: url(/images/icon_rightarrow.gif) no-repeat scroll 0 -22px
+  .slides
+    height: 22px
+    text-align: center
+    table
+      margin-top: 4px
+      margin-left: auto
+      margin-right: auto      
+    .slide
+      width: 10px
+      height: 10px
+      background: url(/images/icon_slides.gif) no-repeat
+      padding: 0 3px
+      cursor: pointer
+    .active
+      background: url(/images/icon_slides.gif) no-repeat scroll 0 -10px
+      
+ 
+.pMargin p
+  margin-bottom: 20px
+
+.cardPreview
+  margin-top: 60px
+  margin-right: 40px
+  float: right
+
+.accountBack
+  height: 500px
+
+.card a
+  text-decoration: none
+  color: #000
+  border-bottom: 2px solid #ddd
+  font-weight: bold
+  font-family: Helvetica, sans-serif
+  &:hover
+    border-bottom: 2px solid #09f
+
+
+
+.getListed
+  background: #c40
+  color: #fff
+  height: 16px
+  padding: 8px 15px
+  border-radius: 5px
+  float: right
+  margin-top: 5px
+  margin-right: 5px
+  cursor: pointer
+  overflow: hidden
+  a
+    color: #fff
+    text-decoration: none
+  .button
+    font-weight: bold
+    font-size: 14px
+    font-family: Arial
+  .message
+    margin-top: 10px
+    line-height: 16px
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Helvetica, Arial, sans-serif
+    font-size: 12px
+    text-decoration: none
+  
+.state
+  margin-bottom: 6px
+  a
+    font-weight: bold
+    font-size: 14px
+    color: #222
+    border-bottom: 2px solid #39c
+    text-decoration: none
+    &:hover
+      color: #39c
+
+.signup
+  p
+    margin-top: 15px
+  &.division
+    padding: 20px
+    margin: 10px
+    border-radius: 5px
+    background-color: #f7eed0
+    border: 1px solid #ddd
+    font-size: 12px
+    h1
+      font-size: 16px
+      font-weight: bold
+    h2
+      font-size: 12px
+      font-weight: bold
+  .comment
+    font-style: italic
+    font-size: 12px
+    color: #333
+
+.signup_step
+  float: left
+  padding: 5px 15px
+  font-family: Georgia, Times, serif
+  color: #777
+  font-size: 18px
+  margin-right: 20px
+  a
+    color: #777
+  .num
+    margin-top: -4px
+    margin-right: 10px
+    background: #ddd
+    border-radius: 15px
+    width: 30px
+    height: 30px
+    text-align: center
+    overflow: hidden
+    float: left
+    &.active
+      background: #8b3
+    .digit
+      margin-top: 4px
+      color: #fff
+      font-weight: bold
+      font-family: arial
+      
+.errors
+  background: #fcc
+  color: #f00
+  padding: 20px
+  border-radius: 5px
+  margin: 0px 10px
+  margin-bottom: 10px
+  font-size: 12px
+  h1
+    color: #000
+    font-size: 20px
+    padding-bottom: 10px
+   
+  
+.errorLabel
+  color: #f00
+
+.errorInput
+  border: 2px solid #f00
+  
+.errorSpan
+  color: #f00
+  input,select
+    border: 2px solid #f00
+
+#signup_upgrade
+  p 
+    margin: 10px 0
+  .button 
+    margin: 20px 0
+    font-weight: bold
+    border-radius: 5px 
+    background: #8b3
+    padding: 10px 20px
+    color: #fff 
+    text-decoration: none
+    border: 1px solid #555
+    &:hover 
+      color: #fff
+    -moz-box-shadow: 3px 3px 4px #555
+    -webkit-box-shadow: 3px 3px 4px #555
+    box-shadow: 3px 3px 4px #555
+  h2
+    font-size: 18px
+  
+  .plan
+    padding: 20px
+
+.listing select
+  width: 180px
+
+
+.works
+
+.comment
+  font-size: 10px
+  
+.printPage a
+  font-size: 12px
+
+.lookLike
+  color: #333
+  width: 330px
+  background: #fff
+  padding: 20px
+  border-radius: 10px
+  border: 1px dotted #ddd
+

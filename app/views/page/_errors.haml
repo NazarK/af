@@ -1,0 +1,8 @@
+- if @errors.count!=0
+  %div.errors
+    <h1>There was a problem</h1>
+    Please correct the information highlighted in red below.
+    %ul
+      - @errors.each do |e|
+        %li 
+          = e

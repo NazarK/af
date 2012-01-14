@@ -1,0 +1,68 @@
+%div.back_home
+  &larr; 
+  = link_to "Back to Account", "/account"
+%div#whiteBack.pMargin.listing
+  <h2>Update listing information</h2>
+  %span(style='font-size:12px') Changes you make here will be reflected immediately to your listing card and page.<br><br>
+  = render "page/errors"
+  = form_for :user, @user, :url => "/account/listing" do |f|
+    %p(class="#{errorSpan :company}")
+      Company name (or your own name)
+      %br/
+      = f.text_field :company, :size => "80"
+    %p
+      Company description
+      %br/
+      = f.text_area :describe, :size => "60x12"
+    - if false
+      %p
+        = f.label :country_id
+        - @countries = Country.order("name")
+        = collection_select(:user, :country_id, @countries, :id, :name, {:prompt => false, :include_blank=> '-'})
+    %p
+      Select your state<br>
+      - (state_id = @user.city.state.id) if @user.city && @user.city.state
+      = collection_select(:user, :state_id, State.order(:name).all, :id, :name, {:prompt => false, :include_blank=> '-', :selected => state_id } ) 
+      
+    %p(class="#{errorSpan :city_id}")
+      Select your city<br>
+      -# @cities = City.order("name").find_all_by_country_id(@user.country_id)
+      - if @user.city then states = @user.city.state.cities.order(:name) else states = [] end
+      = collection_select(:user, :city_id, states , :id, :name, {:prompt => false, :include_blank=> '-'})
+    %p(class="#{errorSpan :budget_id}")
+      Select average budget for the projects you do.<br>
+      - @budgets = Budget.order("id")
+      = collection_select(:user, :budget_id, @budgets, :id, :name, {:prompt => false, :include_blank=> '-'})
+    %p(class="#{errorSpan :contact_email}")
+      Contact email<br>
+      = f.text_field :contact_email, :size => "80"
+    %p(class="#{errorSpan :contact_phone}")
+      Phone<br>
+      = f.text_field :contact_phone, :size => "80"
+    %p
+      Website <span class=comment>- optional</span><br>
+      = f.text_field :website, :size => "80"
+      
+      
+    = submit_tag "Update", :class=>'form_submit'
+  = link_to "Back", :back
+
+:javascript
+    function cities_load() {
+        $.get("/page/country_cities?country_id="+$("#user_country_id").val(), function(data) {
+          $("#user_city_id").html(data);
+        })
+    }
+    
+  function state_cities_load() {
+        $.get("/page/state_cities?state_id="+$("#user_state_id").val(), function(data) {
+          $("#user_city_id").html(data);
+        })
+  }
+    
+
+    $(function() {
+      $("#user_state_id").change( state_cities_load ).keyup( state_cities_load);
+  /*      $("#user_country_id").change( cities_load )
+       .keyup( cities_load );*/
+    });

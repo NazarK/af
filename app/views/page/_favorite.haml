@@ -1,0 +1,12 @@
+- if @favorites && @favorites.find_by_user_id(@user.id)
+  %div.favorites.favorite
+    %span.remove
+      Remove from my favorites
+    %span.add(style='display:none')
+      Save to my favorites
+- else
+  %div.favorites
+    %span.remove(style='display:none')
+      Remove from my favorites
+    %span.add
+      Save to my favorites

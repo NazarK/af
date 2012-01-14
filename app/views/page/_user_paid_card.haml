@@ -1,0 +1,26 @@
+%div.user_paid_card.card(user_id="#{@user.id}")
+  %div
+    <a href=/listing/#{@user.listing_url}>
+    = @user.title
+    </a>
+  %span.budget
+    = @user.budget.name if @user.budget
+  %span.city
+    = @user.city.name if @user.city
+  %div.slideshownav
+    %div.prev
+    %div.next
+    %div.slides
+      %table
+        %tr
+          - (1..@user.works.count).each do |i|
+            - if i==1
+              %td.slide.active(num="#{i}")
+            - else
+              %td.slide(num="#{i}")
+  <a href=/listing/#{@user.listing_url}>
+  %div.image.slideshow
+    - @user.works.each do |work|
+      = image_tag work.image.url(:medium), :width=>400
+  </a>
+  = render "page/favorite"

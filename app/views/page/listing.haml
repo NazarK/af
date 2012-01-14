@@ -1,0 +1,44 @@
+=javascript_include_tag 'jquery.cookie'
+=javascript_include_tag 'favorites.js'
+
+- if cookies[:fav_id]
+  - @favorites = FavoriteController::favorites(cookies[:fav_id])
+
+%div#whiteBack.pMargin
+  - if params[:action] != 'listing_print'
+    %div(style='border-bottom:1px solid #ddd;padding-bottom:15px;')
+      %div(style='float:right') 
+        %span.printPage
+          = link_to "Print Page", "#{@user.listing_url}/print"
+      = render "page/favorite"
+  %p
+    %h1
+      = @user.company
+  %p
+    = @user.contact_phone
+  - if !@user.website.blank?
+    %p
+      = link_to @user.website, @user.website
+  %p
+    = @user.describe
+  %p
+    Typical budget:
+    = @user.budget.name if @user.budget  
+  %p
+    Headquarted in 
+    = link_to @user.city.name, "/#{@user.city.url}" if @user.city
+  %p
+    Contact Us<br>
+    = mail_to @user.email, @user.email, :subject => "via #{app_name}"
+
+  - if @user.paid_atm
+    - @user.works.each do |work|
+      = image_tag work.image.url
+      %p(style='margin-bottom:40px')
+        = work.describe
+  - else
+    - work = @user.works.order(:id).first
+    = image_tag work.image.url
+    %p(style='margin-bottom:40px')
+      = work.describe
+  

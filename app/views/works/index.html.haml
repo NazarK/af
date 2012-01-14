@@ -1,0 +1,23 @@
+%div.back_home
+  &larr; 
+  = link_to "Back to Account", "/account"
+    
+%div#whiteBack.works
+  
+  
+  %h1 Listing works
+  %table
+    %tr
+      %th Thumbnail
+      %th Description
+      %th
+      %th
+    - @works.each do |work|
+      %tr
+        %td= image_tag work.image.url(:thumb)
+        %td{:style => "vertical-align:top;width:100px;"}= work.describe
+        %td= link_to 'Edit', edit_work_path(work)
+        %td= link_to 'Delete', work, :confirm => 'Are you sure?', :method => :delete
+  %br/
+  
+  = link_to 'Add Project', new_work_path

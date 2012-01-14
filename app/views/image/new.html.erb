@@ -1,0 +1,10 @@
+<h2>New</h2>
+
+<%= form_for(@image) do |f| %>
+
+  <p><%= f.label :image %><br />
+  <%= f.file_field :image %></p>
+
+  <p><%= f.submit "Sign up" %></p>
+<% end %>
+

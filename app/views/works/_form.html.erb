@@ -1,0 +1,29 @@
+<%= form_for(@work,  :html => { :multipart => true }) do |f| %>
+  <% if @work.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@work.errors.count, "error") %> prohibited this work from being saved:</h2>
+
+      <ul>
+      <% @work.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= image_tag @work.image.url(:thumb) %><br>
+    <%= f.file_field :image %><br>
+
+  <div class="field">
+    <%= f.label :describe %><br>
+    <%= f.text_area :describe, :size => "60x4" %><br>
+     
+  <div class="actions">
+    <% if params[:action]=='new' %>
+      <%= f.submit "Add Project" %>
+    <% else %>
+      <%= f.submit "Update Project" %>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,116 @@
+- @step=1
+= render "signup_steps"
+<style> .input { width:400px;font-size:16px;font-weight:bold;padding:3px; } </style>
+%div.lookLike(style='margin-top:20px;position:fixed;text-align:center;')
+  <strong>Your free listing will look like this...</strong>
+  %div.user_card(style='margin-top:30px;margin-left:60px;text-align:left;')
+    %div.title User title
+    %div.budget Budget
+    %div.city City
+    %div.image <img src=images/thumb/missing.png>
+    %div.description(style='font-size:12px') Description
+<form method='post'>
+= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token)
+%div(style='float:right;width:600px;')
+  = render "errors"
+           
+  %div.signup.division
+    <h1>First, add a picture of your best work</h1>
+    Upload an image of your work that best represents your primary style. You can always change this image after your card has been created.
+    %div
+      <iframe src='/page/image_upload#{if @errorFields[:image] then "?error=1" end}' style='width:400px;height:55px;overflow:hidden;padding:0;margin:0;background-color:transparent;' frameborder=0 ALLOWTRANSPARENCY="true"></iframe>
+      
+    <h2>For best results upload a 900 x 630 JPG or PNG.</h2>
+    %div.comment
+      Don’t have that size? We’ll resize what you have to make sure it fits.
+    %p
+      <h2>Describe the image you just added</h2>
+      %div.comment
+        Example:  This is a screenshot of a kitchen remodel in San Diego
+      = text_area_tag "user[work_describe]", "" , :size => "60x4"
+
+  %div.signup.division
+    <h2 class=#{errorLabel :company}>What's your company name?</h2><br>
+    <input name=user[company] class="input #{errorInput :company}" value="#{session_value :user, :company}">
+    %p
+      <h2 class=#{errorLabel :budget_id}>What type of budgets do you typically work with?</h2>
+      - Budget.order(:id).each do |budget|
+        %div(budget='#{budget.name}' style='margin-top:10px;')
+          = radio_button_tag 'user[budget_id]', budget.id, (budget.id==session_value(:user,:budget_id).to_i)
+          = budget.name
+    %p
+      <h2 class=#{errorLabel :city_id}>Which city or metro area is closest to you?</h2>
+      Select your state     
+      = collection_select(:user, :state_id, State.order(:name).all, :id, :name, {:prompt => false, :include_blank=> '-', :selected => session_value(:user,:state_id) }) 
+    %p
+      Select your city      
+      - @cities = State.first.cities
+      = collection_select(:user, :city_id, @cities, :id, :name, {:prompt => false, :include_blank=> '-', :selected => session_value(:user,:city_id) })
+
+  %div.signup.division
+    <h1>Finally, how can clients get in touch?<h1>
+    %p
+      <h2 class=#{errorLabel :contact_email}>Sales contact email</h2>
+      %div.comment
+        This is how clients will contact you (example: sales@mydomain.com)
+      <input name=user[contact_email] class="input #{errorInput :contact_email}" value="#{session_value :user, :contact_email}">
+    %p
+      <h2 class=#{errorLabel :contact_phone}>Contact phone</h2>
+      <input name=user[contact_phone] class="input #{errorInput :contact_phone}" value="#{session_value :user, :contact_phone}">
+      <br>
+    %p
+      <h2 style='display:inline'>Website url</h2> - optional<br>
+      %div.comment
+        (example: mydomain.com)
+      <input name=user[website] class=input>   
+    
+
+  <input id="user_submit" style='margin-left:20px' type=submit name=submit value='Save and continue'>
+</form>  
+
+- if session[:work_id]
+  - @work = Work.find_by_id(session[:work_id])
+  - if @work
+    :javascript
+      $(function() {
+        image_update("#{@work.image.url(:thumb)}")
+      });
+    
+:javascript
+  function image_update(url) {
+    $(".user_card .image").html("<img src="+url+">");
+  }
+
+  function cities_load() {
+        $.get("/page/state_cities?state_id="+$("#user_state_id").val(), function(data) {
+          $("#user_city_id").html(data);
+        })
+  }
+
+  function usercard_update() {
+    var v = $("input[name='user[company]']").val();
+    if (!v) v = "Your company name";
+    $(".user_card .title").html( v );
+    v = $("#user_city_id option:selected").text();
+    if(v=='-') v = "Company location";
+    $(".user_card .city").html( v );
+    v = $("input[name='user[budget_id]']:checked").parent().text();
+    if(!v) v = "Typical project budget range";
+    $(".user_card .budget").html( v );
+    v = $("#user_work_describe").val().substr(0,20);
+    if(v=="") v = "Your image description";
+    $(".user_card .description").html(v);
+  }
+
+  $(function() {
+      $("#user_state_id").change( cities_load )
+       .keyup( cities_load );
+      $("input[name='user[company]']")
+          .change( usercard_update)
+          .keyup( usercard_update);
+      usercard_update();
+
+      $("#user_city_id").change( usercard_update ).keyup( usercard_update);
+      $("input[name='user[budget_id]']").change( usercard_update ); 
+      $("#user_work_describe").change( usercard_update ).keyup( usercard_update);
+    });

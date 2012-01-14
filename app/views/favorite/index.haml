@@ -1,0 +1,12 @@
+- if !FavoriteController::favorites(cookies[:fav_id])
+  - cookies[:fav_id] = ""
+- if !FavoriteController::favorites(cookies[:fav_id]) || FavoriteController::favorites(cookies[:fav_id]).count==0
+  %div#whiteBack
+    %h1
+      Save your favorite web #{profs} as you browse
+- else
+  = render :template => "page/user_cards"
+  - if @share_favorites
+    %div.fav_share_link
+      Share your favorites with this link:
+      = link_to "#{root_url}favorites/#{@share_favorites}", "/favorites/#{@share_favorites}"

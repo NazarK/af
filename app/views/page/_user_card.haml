@@ -1,0 +1,14 @@
+%div.user_card.card(user_id="#{@user.id}")
+  %div
+    <a href=/listing/#{@user.listing_url}>
+    = @user.title
+    </a>
+  %div.budget
+    = @user.budget.name if @user.budget
+  %div.city
+    = @user.city.name if @user.city
+  %div.image
+    <a href=/listing/#{@user.listing_url}>
+    = image_tag @user.works.first.image.url(:thumb) if @user.works.first
+    </a>
+  = render "page/favorite"

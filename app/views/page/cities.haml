@@ -1,0 +1,89 @@
+%div.back_home
+  &larr; 
+  = link_to "Back to #{app_name} home", "/"
+
+%div#whiteBack
+  %h2 Top Cities
+  %table(width=920)
+    %tr/
+    - percol = (((@topCities.count-1)/4).floor+1)
+    - (0..3).each do |col|
+      %td(valign='top' width=230)/
+      - (0..(percol-1)).each do |i|
+        - city = @topCities[percol*col+i]
+        - if !city.nil?
+          %div.topCity
+            = link_to city.name, "/#{city.url}"
+  -# united states
+  - country = Country.find_by_name("United States")
+  %div.country 
+    = country.name
+    %span.viewAll 
+      = link_to "View all", "/#{country.url}"
+    - @cities = country.Cities.joins(:state).order(" states.name, cities.name ")
+  - state = ""
+  <br>
+  %table(width=920)
+    <tr>
+    - state = ""
+    - locations = []
+    - loc_types = []
+    - urls = []
+    - @cities.each do |c|
+      - if state != c.state.name
+        - state = c.state.name
+        - locations.push c.state.name
+        - loc_types.push 'state'
+        - urls.push c.state.url 
+      - locations.push c.name
+      - loc_types.push 'city'
+      - urls.push c.url 
+
+    - state = ""    
+    - percol = (((locations.count-1)/5).floor+1)
+    - (0..4).each do |col|
+      %td(valign='top' width=180)/
+      - (0..(percol-1)).each do |i|
+        - j = percol*col+i
+        - if locations[j]
+          - if loc_types[j]=='state'
+            %div.state
+              = link_to locations[j], "/#{urls[j]}"
+          - else
+            %div.city
+              = link_to locations[j], "/#{urls[j]}"
+
+
+  - if false #commented         
+    -#%h2 Top countries  
+    - @topCountries.each do |country|
+      %div.country
+        = country.name
+        %span.viewAll
+          = link_to "View all", "/#{country.url}"
+      - @cities = country.Cities.where("population>200000").order("name")
+      %br/
+      %table(width=920)
+        %tr/
+        - percol = (((@cities.count-1)/5).floor+1)
+        - (0..4).each do |col|
+          %td(valign='top' width=180)/
+          - (0..(percol-1)).each do |i|
+            - city = @cities[percol*col+i]
+            - if !city.nil?
+              %div.city
+                = link_to city.name, "/#{city.url}"
+
+  - if false #commented
+    %h2 Other countries
+    - @countries = Country.where(" top is null").order("name")
+    %table(width=920)
+      %tr/
+      - percol = (((@countries.count-1)/5).floor+1)
+      - (0..4).each do |col|
+        %td(valign='top' width=180)/
+        - (0..(percol-1)).each do |i|
+          - item = @countries[percol*col+i]
+          - if !item.nil?
+            %div.city
+              = link_to item.name, "/#{item.url}"

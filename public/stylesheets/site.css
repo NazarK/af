@@ -1,0 +1,457 @@
+a {
+  outline: none; }
+
+* {
+  margin: 0;
+  border: 0; }
+
+body {
+  color: black;
+  background-color: #f5f5f5;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Helvetica, Arial, sans-serif; }
+
+textarea {
+  resize: none !important; }
+
+#logo, #logo a {
+  padding-top: 20px;
+  padding-left: 5px;
+  letter-spacing: -1.5px;
+  vertical-align: top;
+  color: black;
+  font-family: Arial;
+  font-weight: bold;
+  font-size: 40px;
+  text-decoration: none; }
+
+#slogan {
+  font-size: 28px;
+  font-family: Georgia, Times, serif;
+  color: #555555;
+  margin-left: 40px; }
+
+#wrap {
+  width: 980px;
+  margin: 0 auto; }
+
+#top {
+  padding-bottom: 10px;
+  border-bottom: 3px solid #dddddd; }
+
+#top #menu {
+  margin-top: 10px;
+  float: right;
+  color: #999999;
+  padding-right: 20px;
+  font-family: Verdana, Helvetica, Arial;
+  font-size: 13px; }
+  #top #menu a {
+    color: #999999; }
+
+#top #menu a:hover {
+  color: #00bbff; }
+
+#content {
+  overflow: auto; }
+
+#footer, #footer a {
+  font-size: 12px;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Helvetica, Arial;
+  color: #999999;
+  margin-bottom: 40px;
+  line-height: 1.4em;
+  margin-top: 40px; }
+
+#whiteBack {
+  background: white;
+  margin-top: 20px;
+  padding: 40px;
+  border-radius: 5px; }
+
+.topCity, .topCity a, .topCity a:visited {
+  font-size: 21px;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Helvetica, Arial, sans-serif;
+  color: #0099ff; }
+
+h2 {
+  font-family: Helvetica, sans-serif; }
+
+.city, .city a, .city a:visited {
+  font-size: 14px;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Helvetica, Arial, sans-serif;
+  color: #0099ff; }
+
+.country {
+  text-transform: uppercase;
+  font-family: Helvetica, sans-serif;
+  border-top: 1px dotted #dddddd;
+  margin-top: 20px;
+  padding-top: 20px;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Helvetica, Arial, sans-serif; }
+
+.user_card, .user_paid_card {
+  border: 2px solid #dddddd;
+  padding: 5px;
+  background: white;
+  width: 200px;
+  height: 200px;
+  float: left;
+  margin: 5px; }
+
+.user_paid_card {
+  width: 425px;
+  height: 424px; }
+
+.listHeader {
+  font-size: 15px;
+  color: #222222;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 10px; }
+
+.viewAll a {
+  font-size: 12px;
+  color: #0099ff;
+  text-transform: none; }
+
+.listHeader .location, .listHeader .budget {
+  font-size: 26px;
+  color: #3399cc;
+  font-family: Georgia, Times, Serif;
+  border-bottom: 3px solid #3399cc;
+  cursor: pointer;
+  font-weight: normal;
+  margin-left: 10px;
+  margin-right: 10px; }
+
+.location:hover, .budget:hover {
+  color: black; }
+
+.user_card {
+  padding: 8px;
+  border-radius: 6px; }
+  .user_card .city {
+    font-size: 10px;
+    color: #999999; }
+  .user_card .budget {
+    font-size: 10px;
+    color: #333333; }
+  .user_card .image {
+    margin-top: 5px;
+    height: 120px;
+    overflow: hidden; }
+
+.user_paid_card {
+  padding: 11px;
+  border-radius: 12px; }
+  .user_paid_card .city {
+    color: #999999;
+    font-size: 12px; }
+  .user_paid_card .budget {
+    color: #333333;
+    font-size: 12px; }
+  .user_paid_card .image {
+    margin-top: 5px;
+    height: 314px;
+    overflow: hidden; }
+
+.favorites {
+  font-size: 12px;
+  color: #888888;
+  font-weight: bold;
+  margin-top: 0px;
+  padding-left: 24px;
+  height: 16px;
+  background: url("/images/star.gif") no-repeat scroll 0 0 transparent;
+  cursor: pointer; }
+  .favorites:hover {
+    color: #333333;
+    background: url("/images/star.gif") no-repeat scroll 0 -16px transparent; }
+
+.budgets_popup, .cities_popup {
+  display: none;
+  position: absolute;
+  margin-top: 50px;
+  background: white;
+  width: 180px;
+  border: 1px solid #999999;
+  z-index: 9000; }
+  .budgets_popup .link, .cities_popup .link {
+    padding: 1px;
+    margin-bottom: 5px; }
+    .budgets_popup .link a, .cities_popup .link a {
+      margin: 10px;
+      color: #3399cc;
+      font-size: 14px;
+      text-decoration: none;
+      font-family: Georgia, Times, serif;
+      line-height: 15px; }
+      .budgets_popup .link a:hover, .cities_popup .link a:hover {
+        text-decoration: underline; }
+
+.cities_popup .bottom {
+  border-top: 1px solid #dddddd; }
+
+a {
+  color: #3399cc; }
+  a:hover {
+    color: #0099ff; }
+
+.back_home {
+  margin-top: 20px;
+  font-size: 12px; }
+  .back_home a {
+    font-weight: bold; }
+
+.fav_share_link {
+  float: left;
+  background: #ffffcc;
+  border-radius: 8px;
+  border: 1px solid #dddddd;
+  padding: 20px;
+  width: 880px;
+  margin: 5px;
+  margin-top: 30px; }
+
+.smallWhiteBack {
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+  border: 3px solid #dddddd;
+  line-height: 30px; }
+  .smallWhiteBack input {
+    border: 1px solid #999999; }
+  .smallWhiteBack .bigfont {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 3px; }
+  .smallWhiteBack h2 {
+    font-size: 24px;
+    display: block;
+    font-weight: bold;
+    line-height: 40px; }
+
+#user_submit, .form_submit {
+  padding: 5px 20px;
+  font-size: 14px;
+  border-radius: 2px;
+  background: #dddddd;
+  margin-top: 20px; }
+
+input, textarea, select {
+  border: 1px solid #999999; }
+
+.account {
+  line-height: 40px; }
+  .account a {
+    font-size: 1.5em;
+    font-weight: bold;
+    font-family: Helvetica, sans-serif;
+    color: #3399cc; }
+    .account avisited {
+      color: #3399cc; }
+
+.slideshownav {
+  border-top: 1px solid #dddddd;
+  padding-top: 8px;
+  height: 20px;
+  margin: 8px 0; }
+  .slideshownav .prev, .slideshownav .next {
+    cursor: pointer;
+    float: left;
+    height: 22px;
+    width: 22px;
+    background: url(/images/icon_leftarrow.gif) no-repeat; }
+    .slideshownav .prev:hover, .slideshownav .next:hover {
+      background: url(/images/icon_leftarrow.gif) no-repeat scroll 0 -22px; }
+  .slideshownav .next {
+    float: right;
+    background: url(/images/icon_rightarrow.gif) no-repeat; }
+    .slideshownav .next:hover {
+      background: url(/images/icon_rightarrow.gif) no-repeat scroll 0 -22px; }
+  .slideshownav .slides {
+    height: 22px;
+    text-align: center; }
+    .slideshownav .slides table {
+      margin-top: 4px;
+      margin-left: auto;
+      margin-right: auto; }
+    .slideshownav .slides .slide {
+      width: 10px;
+      height: 10px;
+      background: url(/images/icon_slides.gif) no-repeat;
+      padding: 0 3px;
+      cursor: pointer; }
+    .slideshownav .slides .active {
+      background: url(/images/icon_slides.gif) no-repeat scroll 0 -10px; }
+
+.pMargin p {
+  margin-bottom: 20px; }
+
+.cardPreview {
+  margin-top: 60px;
+  margin-right: 40px;
+  float: right; }
+
+.accountBack {
+  height: 500px; }
+
+.card a {
+  text-decoration: none;
+  color: black;
+  border-bottom: 2px solid #dddddd;
+  font-weight: bold;
+  font-family: Helvetica, sans-serif; }
+  .card a:hover {
+    border-bottom: 2px solid #0099ff; }
+
+.getListed {
+  background: #cc4400;
+  color: white;
+  height: 16px;
+  padding: 8px 15px;
+  border-radius: 5px;
+  float: right;
+  margin-top: 5px;
+  margin-right: 5px;
+  cursor: pointer;
+  overflow: hidden; }
+  .getListed a {
+    color: white;
+    text-decoration: none; }
+  .getListed .button {
+    font-weight: bold;
+    font-size: 14px;
+    font-family: Arial; }
+  .getListed .message {
+    margin-top: 10px;
+    line-height: 16px;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    text-decoration: none; }
+
+.state {
+  margin-bottom: 6px; }
+  .state a {
+    font-weight: bold;
+    font-size: 14px;
+    color: #222222;
+    border-bottom: 2px solid #3399cc;
+    text-decoration: none; }
+    .state a:hover {
+      color: #3399cc; }
+
+.signup p {
+  margin-top: 15px; }
+.signup.division {
+  padding: 20px;
+  margin: 10px;
+  border-radius: 5px;
+  background-color: #f7eed0;
+  border: 1px solid #dddddd;
+  font-size: 12px; }
+  .signup.division h1 {
+    font-size: 16px;
+    font-weight: bold; }
+  .signup.division h2 {
+    font-size: 12px;
+    font-weight: bold; }
+.signup .comment {
+  font-style: italic;
+  font-size: 12px;
+  color: #333333; }
+
+.signup_step {
+  float: left;
+  padding: 5px 15px;
+  font-family: Georgia, Times, serif;
+  color: #777777;
+  font-size: 18px;
+  margin-right: 20px; }
+  .signup_step a {
+    color: #777777; }
+  .signup_step .num {
+    margin-top: -4px;
+    margin-right: 10px;
+    background: #dddddd;
+    border-radius: 15px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    overflow: hidden;
+    float: left; }
+    .signup_step .num.active {
+      background: #88bb33; }
+    .signup_step .num .digit {
+      margin-top: 4px;
+      color: white;
+      font-weight: bold;
+      font-family: arial; }
+
+.errors {
+  background: #ffcccc;
+  color: red;
+  padding: 20px;
+  border-radius: 5px;
+  margin: 0px 10px;
+  margin-bottom: 10px;
+  font-size: 12px; }
+  .errors h1 {
+    color: black;
+    font-size: 20px;
+    padding-bottom: 10px; }
+
+.errorLabel {
+  color: red; }
+
+.errorInput {
+  border: 2px solid red; }
+
+.errorSpan {
+  color: red; }
+  .errorSpan input, .errorSpan select {
+    border: 2px solid red; }
+
+#signup_upgrade p {
+  margin: 10px 0; }
+#signup_upgrade .button {
+  margin: 20px 0;
+  font-weight: bold;
+  border-radius: 5px;
+  background: #88bb33;
+  padding: 10px 20px;
+  color: white;
+  text-decoration: none;
+  border: 1px solid #555555;
+  -moz-box-shadow: 3px 3px 4px #555555;
+  -webkit-box-shadow: 3px 3px 4px #555555;
+  box-shadow: 3px 3px 4px #555555; }
+  #signup_upgrade .button:hover {
+    color: white; }
+#signup_upgrade h2 {
+  font-size: 18px; }
+#signup_upgrade .plan {
+  padding: 20px; }
+
+.listing select {
+  width: 180px; }
+
+.comment {
+  font-size: 10px; }
+
+.printPage a {
+  font-size: 12px; }
+
+.lookLike {
+  color: #333333;
+  width: 330px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px dotted #dddddd; }

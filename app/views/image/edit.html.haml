@@ -1,0 +1,61 @@
+%h2
+  Edit #{resource_name.to_s.humanize}
+= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :multipart => true }) do |f|
+  = devise_error_messages!
+  %p
+    = f.label :email
+    %br/
+    = f.email_field :email
+  %p
+    = f.label :work_image
+    %br/
+    = f.file_field :work_image
+  = image_tag @user.work_image.url(:thumb)
+  %p
+    = f.label :describe
+    %br/
+    = f.text_area :describe, :size => "60x12"
+  %p
+    = f.label :country_id
+    - @countries = Country.order("name")
+    = collection_select(:user, :country_id, @countries, :id, :name, {:prompt => false, :include_blank=> '-'}) 
+  %p
+    = f.label :city_id    
+    - @cities = City.find_all_by_country_id(@user.country_id)
+    = collection_select(:user, :city_id, @cities, :id, :name, {:prompt => false, :include_blank=> '-'})
+  %p
+    = f.label :budget_id
+    - @budgets = Budget.order("id")
+    = collection_select(:user, :budget_id, @budgets, :id, :name, {:prompt => false, :include_blank=> '-'}) 
+  %p
+    = f.label :password
+    %i (leave blank if you don't want to change it)
+    %br/
+    = f.password_field :password
+  %p
+    = f.label :password_confirmation
+    %br/
+    = f.password_field :password_confirmation
+  %p
+    = f.label :current_password
+    %i (we need your current password to confirm your changes)
+    %br/
+    = f.password_field :current_password
+  %p= f.submit "Update"
+%h3 Cancel my account
+%p
+  Unhappy? #{link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete}.
+= link_to "Back", :back
+
+
+
+:javascript
+  function cities_load() {
+      $.get("/page/country_cities?country_id="+$("#user_country_id").val(), function(data) {
+        $("#user_city_id").html(data);
+      })
+  }
+  $(function() {
+    $("#user_country_id").change( cities_load )
+     .keyup( cities_load );
+  });

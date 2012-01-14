@@ -1,0 +1,80 @@
+=javascript_include_tag 'jquery.cookie'
+=javascript_include_tag 'jquery.cycle.lite.min.js'
+=javascript_include_tag 'gallery.js'
+=javascript_include_tag 'favorites.js'
+- if cookies[:fav_id]
+  - @favorites = FavoriteController::favorites(cookies[:fav_id])
+-if !@listHeader
+  %div.budgets_popup.select_popup
+    %div.link
+      = link_to "Any budget", @location?"/#{@location.url}":"/"
+    - @budgets = Budget.order(:id)
+    - @budgets.each do |b|
+      %div.link
+        - if !@location
+          = link_to b.name, "/#{b.url}"
+        - else
+          = link_to b.name, "/#{@location.url}/#{b.url}"
+
+
+  %div.cities_popup.select_popup
+
+    - if @budget then budget_tag = "/#{@budget.url}" else budget_tag = "" end
+
+    %div.link
+      = if @budget then link_to "Any city", "#{budget_tag}" else link_to "Any city", "/" end
+    - @cities = City.where("top='t'").order("name")
+    - @cities.each do |c|
+      %div.link
+        = link_to c.name, "/#{c.url}#{budget_tag}"
+    %div.link.bottom
+      = link_to "List all cities", "/cities"
+
+  %div.listHeader
+
+    - if @location
+      - location = @location.name
+    - else
+      - location = "Any City"
+
+    - if @budget
+      - budget = @budget.name
+    - else
+      - budget = "Any budget"
+
+    Showing all #{profs} in <span class=location>#{location}</span> who work on projects for <span class=budget>#{budget}</span>
+
+- if @listHeader
+  %div.listHeader
+    %h1
+      = @listHeader
+
+- @users.each do |@user|
+  - if !@user.budget.nil? && !@user.city.nil?
+    - if @user.paid_atm
+      = render "page/user_paid_card"
+    - else
+      = render "page/user_card"
+- if @users.count==0
+  %div No records.
+
+:javascript
+  $(function() {
+
+    $(".listHeader .budget, .listHeader .location").click( function() {
+      var p;
+      if($(this).hasClass("budget"))
+        p = $(".budgets_popup");
+      if($(this).hasClass("location")) 
+        p = $(".cities_popup");
+
+      if(!p.is(":visible")) {
+        $(".select_popup").hide(); //hide other popup
+        p.css("margin-left",$(this).offset().left-$("#wrap").offset().left)
+        .show();
+      } else {
+        p.hide();
+      }
+    })
+
+  })

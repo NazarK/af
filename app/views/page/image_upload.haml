@@ -1,0 +1,33 @@
+= javascript_include_tag "jquery.js"
+<form accept-charset="UTF-8" enctype="multipart/form-data" method="post">
+= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token)
+<input id="work_image" name="work[image]" type="file" /><br>
+</form>
+<img src=/images/circle_progress.gif style='display:none'>
+
+:javascript
+  function getURLParameter(name) {
+      return decodeURI(
+          (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
+      );
+  }
+  $(function() {
+     $("#work_image").change( function() {
+       $("form").hide();
+       $("img").show();
+       $("form").submit();
+     });
+     
+     if(getURLParameter("error")=='1') {
+        $("#work_image").css("border","1px solid #f00");
+     }
+
+  });
+
+- if @work
+  :javascript
+    $(function() {
+      var url = "#{@work.image.url(:thumb)}";
+      if(!parent) alert(url)
+      else parent.image_update(url);
+    });

@@ -1,0 +1,75 @@
+=javascript_include_tag 'gallery.js'
+
+- @step=2
+= render "signup_steps"
+<div id=signup_upgrade>
+
+<div class='plan' style='float:left;width:400px'>
+<h2>Your Free #{app_name} listing</h2>
+<div style='font-size:14px'>
+%p
+  Everyone gets a small listing card. Yours is shown below. You can get a bigger card, more images, and better placement when you upgrade to Pro.
+%p
+  You can always upgrade later.
+</div>
+<br>
+%p
+  <a class=button href=/signup/publish>Continue with the Free plan</a><br><Br>
+
+- user = session[:user]
+- user[:budget] = Budget.find_by_id(user[:budget_id]).name
+- user[:city] = City.find_by_id(user[:city_id]).name
+- user[:image] = Work.find_by_id(session[:work_id]).image
+%p
+  %div.user_card.card
+    %div
+      = user[:company]
+    %div.budget
+      = user[:budget]
+    %div.city
+      = user[:city]
+    %div.image
+      = image_tag user[:image].url(:thumb)
+</div>
+
+
+<div class='plan' style='float:left;width:500px'>
+<h2>Your #{app_name} Pro listing for $#{month_price}/month</h2>
+<div style='font-size:14px'>
+%p
+  %ul
+    <li> Add up to 6 big images
+    <li> Large interactive listing card
+    <li> Your larger listing card appears <strong>above the free listings</strong>
+%p
+  No obligation. Cancel anytime.<br><br>
+</div>
+
+%p
+  <a class=button href=/signup/publish?upgrade=1>Upgrade to the #{app_name} Pro plan</a><br><br>
+%p
+  %div.user_paid_card.card
+    %div
+      = user[:company]
+    %span.budget
+      = user[:budget]
+    %span.city
+      = user[:city]
+    %div.slideshownav
+      %div.prev
+      %div.next
+      %div.slides
+        %table
+          %tr
+            - (1..4).each do |i|
+              - if i==1
+                %td.slide.active(num="#{i}")
+              - else
+                %td.slide(num="#{i}")
+    %div.image.slideshow
+      - (1..4).each do |work|
+        = image_tag user[:image].url(:medium), :width=>400
+
+</div>
+
+</div>

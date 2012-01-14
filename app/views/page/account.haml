@@ -1,0 +1,23 @@
+=javascript_include_tag 'jquery.cycle.lite.min.js'
+=javascript_include_tag 'gallery.js'
+<style> .favorites {display:none} </style>
+%div.cardPreview
+  - if @user.paid_atm
+    = render "page/user_paid_card"
+  - else
+    = render "page/user_card"
+  %div(style='text-align:center')
+    = link_to "View your listing page", "/listing/#{@user.listing_url}"
+
+%div#whiteBack.account.accountBack
+  %h1 Account
+  %div
+    = link_to "Company info", "account/listing"
+  %div
+    = link_to "Manage images", "works"
+  %div
+    = link_to "Upgrade to Pro", "subscriptions/checkout"
+  %div
+    = link_to "Edit email/password", "users/edit"
+
+

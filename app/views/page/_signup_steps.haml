@@ -1,0 +1,32 @@
+%div(style='margin-top:15px;text-align:center;border-bottom:2px solid #ddd;height:50px;margin-bottom:10px')
+  %div.wrap(style='margin-left:auto;margin-right:auto;width:750px;')
+    %div.signup_step
+      - if @step==1
+        %div.num.active
+          %div.digit 1
+      - else
+        %div.num 
+          %div.digit 1
+      - if @step>1
+        <a href=/signup> Create your listing </a>
+      - else
+        Create your listing
+    %div.signup_step
+      - if @step==2
+        %div.num.active
+          %div.digit 2
+      - else
+        %div.num 
+          %div.digit 2
+      - if @step>2
+        <a href=/signup/upgrade> Choose to upgrade </a>
+      - else
+        Choose to upgrade
+    %div.signup_step
+      - if @step==3
+        %div.num.active
+          %div.digit 3
+      - else
+        %div.num 
+          %div.digit 3
+      Publish your listing
